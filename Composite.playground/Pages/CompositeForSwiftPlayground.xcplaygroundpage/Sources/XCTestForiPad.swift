@@ -96,4 +96,4 @@ final class PlaylistTests: XCTestCase {
 }
 
 //try PlaylistTests.run()
-try PlaylistTests.allTests
+//try PlaylistTests.allTests

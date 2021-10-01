@@ -131,8 +131,39 @@ class Client {
     }
 }
 
+protocol XCTestCase {
+    init()
+    func setUp()
+    func tearDown()
+    static var allTests: [(String, (Self) -> () throws -> Void)] { get }
+}
+
+extension XCTestCase {
+    static func run() throws {
+        let instance = self.init()
+        
+        for (name, closure) in allTests {
+            instance.setUp()
+            
+            let test = closure(instance)
+            try test()
+            
+            instance.tearDown()
+        }
+    }
+    
+    func setUp() {}
+    func tearDown() {}
+}
+
 /// Let's see how it all comes together.
-class CompositeConceptual: XCTestCase {
+final class CompositeConceptual: XCTestCase {
+    static var allTests: [(String, (CompositeConceptual) -> () throws -> Void)] {
+        return [
+            ("testCompositeConceptual", testCompositeConceptual)
+        ]
+    }
+    
     
     func testCompositeConceptual() {
         
