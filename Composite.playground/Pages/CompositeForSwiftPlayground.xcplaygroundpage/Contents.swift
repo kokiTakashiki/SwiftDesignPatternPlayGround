@@ -164,7 +164,6 @@ final class CompositeConceptual: XCTestCase {
         ]
     }
     
-    
     func testCompositeConceptual() {
         
         /// This way the client code can support the simple leaf components...
